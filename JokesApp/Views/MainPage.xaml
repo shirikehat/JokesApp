@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="JokesApp.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:JokesApp.ViewModels"
+    x:DataType="viewModels:MainPageViewModel">
+
+    <Grid RowDefinitions="Auto,*,*,Auto">
+        <Label
+            Grid.Row="0"
+            Margin="0,20,0,0"
+            FontAttributes="Bold"
+            FontSize="24"
+            HorizontalOptions="Center"
+            Text="Joke of the Day" />
+
+        <Border
+            Grid.Row="1"
+            Margin="20"
+            BackgroundColor="{StaticResource Tertiary}"
+            HeightRequest="100"
+            HorizontalOptions="Center"
+            StrokeShape="RoundRectangle 10"
+            WidthRequest="200">
+            <Label
+                FontSize="18"
+                HorizontalOptions="Center"
+                Text="{Binding SetUp}"
+                TextColor="White" />
+
+        </Border>
+        <Border
+            Grid.Row="2"
+            Margin="20"
+            BackgroundColor="{StaticResource Tertiary}"
+            HeightRequest="100"
+            HorizontalOptions="Center"
+            IsVisible="{Binding IsVisible}"
+            StrokeShape="RoundRectangle 10"
+            WidthRequest="200">
+            <Label
+                FontSize="18"
+                HorizontalOptions="Center"
+                Text="{Binding Delivery}"
+                TextColor="White" />
+
+        </Border>
+        <HorizontalStackLayout Grid.Row="3">
+            <Button
+                Margin="20,0,20,20"
+                Command="{Binding GetJokeCommand}"
+                CornerRadius="20"
+                HeightRequest="50"
+                Text="Get New Joke" />
+            <Button
+                Margin="20,0,20,20"
+                Command="{Binding SubmitJokeCommand}"
+                CornerRadius="20"
+                HeightRequest="50"
+                Text="Submit Joke" />
+        </HorizontalStackLayout>
+    </Grid>
+
+</ContentPage>
