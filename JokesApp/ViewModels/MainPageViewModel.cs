@@ -31,6 +31,7 @@ namespace JokesApp.ViewModels
         {
             joke = null;
             this.service=service;
+            Categories = new ObservableCollection<string>();
             GetJokeCommand = new Command(async () =>
             {
                 joke = await service.GetRandomJoke();
@@ -49,7 +50,9 @@ namespace JokesApp.ViewModels
             } );
 
             SubmitJokeCommand= new Command(async () => { await SubmitJoke(); });
-            GetCategoriesCommand= new Command(async () => {var cat= await service.GetCategoriesAsync(); foreach (var c in cat) Categories.Add(c); });
+            GetCategoriesCommand= new Command(async () => 
+            {
+                var cat= await service.GetCategoriesAsync();Categories.Clear(); foreach (var c in cat) Categories.Add(c); });
         }
 
         private async Task SubmitJoke()

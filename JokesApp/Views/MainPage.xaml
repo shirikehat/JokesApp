@@ -59,12 +59,13 @@
                 CornerRadius="20"
                 HeightRequest="50"
                 Text="Submit Joke" />
-            <Button 
+            <Button
                 Margin="20,0,20,20"
-                Command="{Binding }"
+                Command="{Binding GetCategoriesCommand}"
                 CornerRadius="20"
                 HeightRequest="50"
                 Text="Categories" />
+            <Picker ItemDisplayBinding="{Binding .}" ItemsSource="{Binding Categories}" />
         </HorizontalStackLayout>
     </Grid>
 
