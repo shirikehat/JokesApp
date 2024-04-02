@@ -59,6 +59,12 @@
                 CornerRadius="20"
                 HeightRequest="50"
                 Text="Submit Joke" />
+            <Button 
+                Margin="20,0,20,20"
+                Command="{Binding }"
+                CornerRadius="20"
+                HeightRequest="50"
+                Text="Categories" />
         </HorizontalStackLayout>
     </Grid>
 

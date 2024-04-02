@@ -89,26 +89,24 @@ namespace JokesApp.Services
         }
 
 
-        public async Task<Categories> GetCategories()
+        public async Task<List<string>> GetCategoriesAsync()
         {
-            Categories c = null;
-            HttpResponseMessage response = await httpClient.GetAsync($"{URL}categories");
-
-            //if(response.StatusCode==System.Net.HttpStatusCode.OK)
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                string jsonString = await response.Content.ReadAsStringAsync();
-
-                c = JsonSerializer.Deserialize<Categories>(jsonString, options);
-
-
+                var response = await httpClient.GetAsync($"{URL}categories");
+                if(response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    string jsonString = await response.Content.ReadAsStringAsync();
+                    Categories g = JsonSerializer.Deserialize<Categories>(jsonString);
+                    return g.CategoriesList.ToList();
+                }
+                return null;
             }
-            return c;
+            catch(Exception ex) { return null; }
         }
 
 
-        public async Task<OneLiner> GetOneLiner()
+        public async Task<OneLiner> GetOneLinerAsync()
         {
             OneLiner o = null;
             HttpResponseMessage response = await httpClient.GetAsync($"{URL}oneliner");
